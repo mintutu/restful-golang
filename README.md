@@ -1,0 +1,2 @@
+# Restful Golang example
+
