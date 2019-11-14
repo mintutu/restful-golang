@@ -2,6 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
+orbs:
+  codecov: codecov/codecov@1.0.5
 jobs:
   build:
     docker:
@@ -21,6 +23,8 @@ jobs:
             go test -v ./... -coverprofile=c.out -covermode=atomic
             go tool cover -html=c.out -o coverage.html
             mv coverage.html /tmp/artifacts
-            bash <(curl -s https://codecov.io/bash) -t fb9531b7-1689-4b51-957a-5d24a36448ce
       - store_artifacts:
           path: /tmp/artifacts
+      - codecov/upload:
+          file: /tmp/artifacts/coverage.html
+          flags: "unittests"          
