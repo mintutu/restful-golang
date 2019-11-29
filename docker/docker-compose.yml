@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: '123456'
+    ports:
+      - '3306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
+# Names our volume
+volumes:
+  my-db:
+    name: test-mysql-data
