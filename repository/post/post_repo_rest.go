@@ -35,3 +35,7 @@ func (m *RestPostRepo) Fetch(ctx context.Context) ([]*model.Post, error) {
 	}
 	return posts, nil
 }
+
+func (m *RestPostRepo) Create(ctx context.Context, p *model.Post) (int64, error) {
+	return 0, nil
+}
