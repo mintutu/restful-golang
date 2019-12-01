@@ -5,16 +5,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/mintutu/restful-golang/driver"
 	"github.com/mintutu/restful-golang/model"
 	"github.com/mintutu/restful-golang/repository"
-	"github.com/mintutu/restful-golang/repository/post"
 )
 
-func NewPostHandler(db *driver.DB) *Post {
+func NewPostHandler(repo repository.PostRepo) *Post {
 	return &Post{
+		repo,
 		// repo: post.NewRestPostRepo(),
-		repo: post.NewMySQLPostRepo(db.SQL),
+		// repo: post.NewMySQLPostRepo(db.SQL),
 	}
 }
 

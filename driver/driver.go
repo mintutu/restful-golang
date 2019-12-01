@@ -7,19 +7,15 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// DB ...
 type DB struct {
 	SQL *sql.DB
-	// Mgo *mgo.database
 }
 
-// DBConn ...
 var dbConn = &DB{}
 
-// ConnectSQL ...
-func ConnectSQL(host, port, uname, pass, dbname string) (*DB, error) {
+func ConnectSQL(host string, port int, uname string, pass string, dbname string) (*DB, error) {
 	dbSource := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8",
+		"%s:%s@tcp(%s:%d)/%s?charset=utf8",
 		uname,
 		pass,
 		host,
